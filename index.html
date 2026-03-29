@@ -1,0 +1,979 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoulBridge Center | Faith-Based Mental Health Services</title>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --earth: #6b5d4f;
+      --moss: #7a8c6e;
+      --sky: #8fa8b8;
+      --sand: #d4c5a9;
+      --cream: #f7f3ed;
+      --dawn: #e8d5b7;
+      --gold: #c9a96e;
+      --deep: #2e2a24;
+      --text: #3d3530;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      color: var(--text);
+      background: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* NAV */
+    nav {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      background: rgba(247,243,237,0.92);
+      backdrop-filter: blur(8px);
+      border-bottom: 1px solid rgba(107,93,79,0.12);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 2.5rem;
+    }
+    .nav-logo {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      font-weight: 600;
+      color: var(--earth);
+      letter-spacing: 0.04em;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2rem;
+      list-style: none;
+    }
+    .nav-links a {
+      font-size: 0.82rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--earth);
+      text-decoration: none;
+      opacity: 0.75;
+      transition: opacity 0.2s;
+    }
+    .nav-links a:hover { opacity: 1; }
+
+    /* HERO */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      padding: 7rem 2rem 4rem;
+      position: relative;
+      overflow: hidden;
+      background:
+        linear-gradient(to bottom, rgba(247,243,237,0.15) 0%, rgba(247,243,237,0.7) 100%),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1600&q=80') center/cover no-repeat;
+    }
+    .hero-badge {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      margin-bottom: 1.5rem;
+      font-weight: 500;
+    }
+    .hero h1 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2.8rem, 6vw, 5.5rem);
+      font-weight: 300;
+      line-height: 1.12;
+      color: var(--deep);
+      max-width: 800px;
+      margin-bottom: 1.5rem;
+    }
+    .hero h1 em { font-style: italic; color: var(--earth); }
+    .hero p {
+      font-size: 1.05rem;
+      line-height: 1.8;
+      color: var(--text);
+      max-width: 580px;
+      opacity: 0.85;
+      margin-bottom: 2.5rem;
+    }
+    .btn {
+      display: inline-block;
+      padding: 0.85rem 2.2rem;
+      background: var(--earth);
+      color: white;
+      text-decoration: none;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn:hover { background: var(--deep); transform: translateY(-1px); }
+    .btn-outline {
+      background: transparent;
+      border: 1.5px solid var(--earth);
+      color: var(--earth);
+      margin-left: 1rem;
+    }
+    .btn-outline:hover { background: var(--earth); color: white; }
+
+    /* SECTION BASE */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1rem;
+    }
+    h2 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 400;
+      line-height: 1.2;
+      color: var(--deep);
+      margin-bottom: 1.5rem;
+    }
+    h2 em { font-style: italic; color: var(--earth); }
+
+    /* ABOUT / MISSION */
+    .mission {
+      background: white;
+    }
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .mission-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+    .mission-text p {
+      font-size: 1rem;
+      line-height: 1.9;
+      opacity: 0.82;
+      margin-bottom: 1.2rem;
+    }
+
+    /* SERVICES */
+    .services { background: var(--cream); }
+    .services-intro {
+      text-align: center;
+      max-width: 640px;
+      margin: 0 auto 4rem;
+    }
+    .services-intro p {
+      font-size: 1rem;
+      line-height: 1.8;
+      opacity: 0.8;
+    }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 2rem;
+    }
+    .service-card {
+      background: white;
+      padding: 2.5rem 2rem;
+      border-radius: 2px;
+      border-top: 3px solid var(--gold);
+      box-shadow: 0 4px 24px rgba(0,0,0,0.05);
+    }
+    .service-num {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 2.5rem;
+      color: var(--sand);
+      font-weight: 300;
+      margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--deep);
+      margin-bottom: 0.8rem;
+    }
+    .service-card p {
+      font-size: 0.9rem;
+      line-height: 1.8;
+      opacity: 0.75;
+    }
+
+    /* QUOTE BANNER */
+    .quote-banner {
+      background:
+        linear-gradient(rgba(46,42,36,0.72), rgba(46,42,36,0.72)),
+        url('https://images.unsplash.com/photo-1501854140801-50d01698950b?w=1600&q=80') center/cover no-repeat;
+      text-align: center;
+      padding: 7rem 2rem;
+    }
+    .quote-banner blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.8rem);
+      font-style: italic;
+      color: white;
+      max-width: 760px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.4;
+      font-weight: 300;
+    }
+    .quote-banner cite {
+      font-size: 0.82rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--dawn);
+      font-style: normal;
+    }
+
+    /* TEAM */
+    .team { background: white; }
+    .team-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .team-header p {
+      max-width: 580px;
+      margin: 0 auto;
+      font-size: 1rem;
+      line-height: 1.8;
+      opacity: 0.78;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+    }
+    .team-card {
+      display: flex;
+      flex-direction: column;
+    }
+    .team-img-wrap {
+      width: 100%;
+      aspect-ratio: 3/2;
+      overflow: hidden;
+      border-radius: 2px;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+    .team-img-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+    .team-card h3 {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.8rem;
+      color: var(--deep);
+      margin-bottom: 0.3rem;
+    }
+    .team-card .role {
+      font-size: 0.78rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--gold);
+      font-weight: 500;
+      margin-bottom: 1.2rem;
+    }
+    .team-card p {
+      font-size: 0.92rem;
+      line-height: 1.85;
+      opacity: 0.78;
+      margin-bottom: 0.9rem;
+    }
+    .credentials {
+      margin-top: 1rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .cred-item {
+      font-size: 0.8rem;
+      color: var(--earth);
+      padding-left: 1rem;
+      border-left: 2px solid var(--sand);
+      line-height: 1.5;
+    }
+
+    /* APPROACH */
+    .approach {
+      background: var(--cream);
+    }
+    .approach-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: center;
+    }
+    .approach-img {
+      width: 100%;
+      aspect-ratio: 4/5;
+      object-fit: cover;
+      border-radius: 2px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.08);
+    }
+    .approach-list {
+      list-style: none;
+      margin-top: 2rem;
+    }
+    .approach-list li {
+      padding: 1.2rem 0;
+      border-bottom: 1px solid rgba(107,93,79,0.15);
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+    .approach-list li:last-child { border-bottom: none; }
+    .list-icon {
+      color: var(--gold);
+      font-size: 1rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .approach-list strong {
+      display: block;
+      font-size: 0.9rem;
+      font-weight: 500;
+      color: var(--deep);
+      margin-bottom: 0.25rem;
+    }
+    .approach-list span {
+      font-size: 0.86rem;
+      opacity: 0.72;
+      line-height: 1.7;
+    }
+
+    /* NATURE BREAK */
+    .nature-break {
+      background:
+        linear-gradient(to right, rgba(247,243,237,0.9) 0%, rgba(247,243,237,0.4) 50%, transparent 100%),
+        url('https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=1600&q=80') center/cover no-repeat;
+      padding: 8rem 2rem;
+    }
+    .nature-break .container {
+      max-width: 560px;
+      margin: 0;
+    }
+    .nature-break p {
+      font-size: 1.1rem;
+      line-height: 1.9;
+      opacity: 0.85;
+      margin-bottom: 1rem;
+    }
+
+    /* CONTACT */
+    .contact { background: var(--deep); }
+    .contact h2 { color: var(--dawn); }
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 5rem;
+      align-items: start;
+    }
+    .contact p {
+      color: rgba(232,213,183,0.75);
+      font-size: 0.95rem;
+      line-height: 1.85;
+      margin-bottom: 2rem;
+    }
+    .contact-form {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+    .form-group label {
+      font-size: 0.75rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--dawn);
+      opacity: 0.7;
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: white;
+      padding: 0.9rem 1rem;
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus {
+      border-color: var(--gold);
+    }
+    .form-group select option { background: var(--deep); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .contact-info {
+      margin-top: 2rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    .contact-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      color: var(--dawn);
+      font-size: 0.88rem;
+      opacity: 0.8;
+    }
+
+    /* FOOTER */
+    footer {
+      background: #1a1713;
+      padding: 2.5rem 2rem;
+      text-align: center;
+    }
+    footer p {
+      font-size: 0.78rem;
+      color: rgba(232,213,183,0.35);
+      letter-spacing: 0.06em;
+    }
+
+    /* RESPONSIVE */
+    /* ── HAMBURGER BUTTON ── */
+    .nav-toggle {
+      display: none;
+      flex-direction: column;
+      gap: 5px;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 4px;
+      z-index: 200;
+    }
+    .nav-toggle span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: var(--earth);
+      border-radius: 2px;
+      transition: transform 0.3s, opacity 0.3s;
+    }
+    .nav-toggle.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .nav-toggle.open span:nth-child(2) { opacity: 0; }
+    .nav-toggle.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    /* ── TABLET (≤860px) ── */
+    @media (max-width: 860px) {
+      /* Nav */
+      nav { padding: 1rem 1.5rem; }
+      .nav-toggle { display: flex; }
+      .nav-links {
+        display: none;
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: var(--cream);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2rem;
+        z-index: 150;
+      }
+      .nav-links.open { display: flex; }
+      .nav-links a { font-size: 1.1rem; }
+
+      /* Grids → single column */
+      .mission-grid,
+      .team-grid,
+      .approach-grid,
+      .contact-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+      .services-grid { grid-template-columns: 1fr 1fr; }
+
+      /* Mission image order: text first on mobile */
+      .mission-img { order: -1; aspect-ratio: 16/9; }
+
+      /* Nature break */
+      .nature-break { background-position: right center; padding: 5rem 1.5rem; }
+      .nature-break .container { max-width: 100%; }
+
+      /* Contact form grid */
+      .contact-grid { gap: 2rem; }
+    }
+
+    /* ── MOBILE (≤540px) ── */
+    @media (max-width: 540px) {
+      section { padding: 4rem 1.25rem; }
+
+      /* Hero */
+      .hero { padding: 6rem 1.25rem 3rem; min-height: 92vh; }
+      .hero h1 { font-size: 2.4rem; }
+      .hero p { font-size: 0.95rem; }
+      .hero div { display: flex; flex-direction: column; gap: 0.8rem; align-items: center; }
+      .btn-outline { margin-left: 0; }
+
+      /* Nav */
+      nav { padding: 0.9rem 1.25rem; }
+      .nav-logo { font-size: 1.15rem; }
+
+      /* Services → single column */
+      .services-grid { grid-template-columns: 1fr; }
+      .service-card { padding: 2rem 1.5rem; }
+
+      /* Team */
+      .team-img-wrap { aspect-ratio: 4/3; }
+
+      /* Quote banner */
+      .quote-banner { padding: 4.5rem 1.5rem; }
+      .quote-banner blockquote { font-size: 1.4rem; }
+
+      /* Approach list */
+      .approach-img { aspect-ratio: 16/9; }
+
+      /* Contact */
+      .contact { padding: 4rem 1.25rem; }
+      .contact-form > div { grid-template-columns: 1fr !important; }
+
+      /* Nature break */
+      .nature-break { padding: 4rem 1.25rem; background-image: linear-gradient(rgba(247,243,237,0.88), rgba(247,243,237,0.88)), url('https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=1200&q=80'); background-size: cover; }
+
+      /* Footer */
+      footer { padding: 2rem 1.25rem; }
+      footer p { font-size: 0.72rem; }
+
+      /* Misc headings */
+      h2 { font-size: 1.9rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">SoulBridge Center</div>
+    <button class="nav-toggle" id="navToggle" aria-label="Open menu">
+      <span></span><span></span><span></span>
+    </button>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#mission">Mission</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#team">Our Team</a></li>
+      <li><a href="#approach">Approach</a></li>
+      <li><a href="#contact">Connect</a></li>
+    </ul>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <p class="hero-badge">Faith-Based Mental Health &amp; Consultation</p>
+    <h1>Where Clinical Care Meets <em>Sacred Wholeness</em></h1>
+    <p>
+      Evidence-informed, trauma-sensitive mental health services grounded in faith —
+      honoring the full person: mind, body, and spirit.
+    </p>
+    <div>
+      <a href="#contact" class="btn">Begin Your Journey</a>
+      <a href="#services" class="btn btn-outline">Our Services</a>
+    </div>
+  </section>
+
+  <!-- MISSION -->
+  <section class="mission" id="mission">
+    <div class="container">
+      <div class="mission-grid">
+        <img
+          class="mission-img"
+          src="https://images.unsplash.com/photo-1470770841072-f978cf4d019e?w=900&q=80"
+          alt="Golden morning light over a misty mountain valley"
+        />
+        <div class="mission-text">
+          <p class="section-label">Our Mission</p>
+          <h2>Clinical competence rooted in <em>faith and compassion</em></h2>
+          <p>
+            SoulBridge Center exists to provide clinically rigorous, faith-informed mental health care
+            to individuals navigating the intersection of psychological distress and spiritual longing.
+            We work from an evidence-based biopsychosocial-spiritual framework — one that takes both
+            neuroscience and soul seriously.
+          </p>
+          <p>
+            Our clinicians hold that suffering does not exist in a vacuum: biological, psychological,
+            relational, and spiritual dimensions are always present. Effective care addresses all of them.
+            Here you will find both clinical precision and the kind of spacious, contemplative presence
+            that creates conditions for genuine transformation.
+          </p>
+          <p>
+            We serve individuals, couples, families, faith communities, and organizations — offering
+            direct clinical care as well as professional consultation and training for ministry leaders
+            and healthcare providers.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services" id="services">
+    <div class="container">
+      <div class="services-intro">
+        <p class="section-label">What We Offer</p>
+        <h2>Integrated Services for <em>the Whole Person</em></h2>
+        <p>
+          We combine clinical training with contemplative practice — offering services that are both
+          therapeutically sound and spiritually alive.
+        </p>
+      </div>
+      <div class="services-grid">
+        <div class="service-card">
+          <div class="service-num">01</div>
+          <h3>Psychiatric Mental Health Consultation</h3>
+          <p>
+            PMHNP-level assessment, psychopharmacological consultation, and co-care coordination
+            for individuals experiencing mood disorders, anxiety, trauma, and complex mental health
+            conditions — always within a faith-informed framework that honors the whole person.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">02</div>
+          <h3>Faith-Based Counselling &amp; Social Work</h3>
+          <p>
+            Registered social work practice integrating spiritual formation, cultural sensitivity,
+            and evidence-based therapeutic modalities. Trauma-informed, non-judgmental, and
+            inclusive of diverse faith backgrounds. Available virtually worldwide.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">03</div>
+          <h3>Trauma-Informed Soul Care</h3>
+          <p>
+            Clinically grounded care that attends to how trauma is held in the nervous system and
+            body — integrating somatic awareness, attachment-informed approaches, and spiritual
+            direction to support regulation, healing, and integration.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">04</div>
+          <h3>Mental Health Recovery &amp; Faith-Sensitive Care</h3>
+          <p>
+            Clinically guided recovery support for individuals living with mood disorders, anxiety,
+            trauma, grief, and relational wounds — integrated with sensitivity to spiritual belief
+            and identity. We meet each person within their own framework of meaning and hope.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">05</div>
+          <h3>Professional Training &amp; Consultation</h3>
+          <p>
+            Clinical education and consultation for ministry leaders, chaplains, and healthcare
+            providers on topics including mental health &amp; faith integration, Black mental health,
+            cultural competency, trauma-informed ministry, and resilience frameworks.
+          </p>
+        </div>
+        <div class="service-card">
+          <div class="service-num">06</div>
+          <h3>Community &amp; Organizational Support</h3>
+          <p>
+            Partnership with faith communities and organizations seeking to build psychologically
+            safe, trauma-aware cultures. Workshops, webinars, and ongoing consultation tailored
+            to the needs of your community or team.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- QUOTE BANNER -->
+  <div class="quote-banner">
+    <blockquote>
+      "Healing is not the absence of pain — it is the presence of Love meeting us within it."
+    </blockquote>
+    <cite>SoulBridge Center</cite>
+  </div>
+
+  <!-- TEAM -->
+  <section class="team" id="team">
+    <div class="container">
+      <div class="team-header">
+        <p class="section-label">Our Clinicians</p>
+        <h2>A Team Formed in <em>Both Science and Spirit</em></h2>
+        <p>
+          Our founders bring decades of combined clinical experience, rigorous academic training,
+          and a shared conviction that genuine healing integrates faith, neuroscience, and relationship.
+        </p>
+      </div>
+      <div class="team-grid">
+
+        <!-- Grace -->
+        <div class="team-card">
+          <div class="team-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=800&q=80"
+              alt="Grace — Gracerenewal Counselling"
+            />
+          </div>
+          <h3>Grace (Maame)</h3>
+          <div class="role">Co-Founder · RSW · Ordained Minister · Cultural Consultant</div>
+          <p>
+            Grace is a Registered Social Worker, McGill University alumna, ordained minister, writer,
+            cultural consultant, and community activist. Through Gracerenewal Counselling, she brings
+            a rare integration of clinical rigor and maternal warmth — offering non-judgmental,
+            culturally informed care to those experiencing anxiety, depression, trauma, and grief.
+          </p>
+          <p>
+            Known to those she walks with as "Mother Grace," she creates therapeutic space defined by
+            safety, cultural humility, and abiding compassion. Her work on Black mental health,
+            systemic racism, and resilience equips both individuals and communities to navigate and
+            transcend systemic barriers to wellness.
+          </p>
+          <div class="credentials">
+            <div class="cred-item">Registered Social Worker (RSW)</div>
+            <div class="cred-item">McGill University — Social Work</div>
+            <div class="cred-item">Ordained Minister</div>
+            <div class="cred-item">Cultural Consultant &amp; Community Activist</div>
+            <div class="cred-item">Specialties: Black Mental Health · Systemic Racism · Faith &amp; Identity</div>
+          </div>
+        </div>
+
+        <!-- Heather -->
+        <div class="team-card">
+          <div class="team-img-wrap">
+            <img
+              src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&q=80"
+              alt="Heather McKay Maddox"
+            />
+          </div>
+          <h3>Heather McKay Maddox</h3>
+          <div class="role">Co-Founder · PMHNP · Mental Health Clinician</div>
+          <p>
+            Heather brings over thirty years of clinical practice in healthcare and education,
+            shaped by deep roots in Celtic Christian spirituality, interpersonal neurobiology,
+            and contemplative spiritual direction. She holds graduate training in Psychiatric-Mental
+            Health Nursing (PMHNP) and Health Systems Leadership, and has served as faculty and mentor
+            with the CenterQuest School of Spiritual Direction.
+          </p>
+          <p>
+            Her clinical and contemplative work converges at a single conviction: that people heal
+            when they are truly seen. She accompanies individuals at profound life thresholds — trauma,
+            grief, illness, transition — meeting them with curiosity, scientific grounding, and grace.
+          </p>
+          <div class="credentials">
+            <div class="cred-item">MS — Psychiatric-Mental Health Nursing (PMHNP)</div>
+            <div class="cred-item">MS — Health Systems Leadership, Nursing</div>
+            <div class="cred-item">Spiritual Direction — CenterQuest School</div>
+            <div class="cred-item">BSN Teaching Faculty — Washington State, California &amp; British Columbia, Canada</div>
+            <div class="cred-item">Training: Interpersonal Neurobiology · Somatic Awareness · Narrative Therapy</div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- APPROACH -->
+  <section class="approach" id="approach">
+    <div class="container">
+      <div class="approach-grid">
+        <div>
+          <p class="section-label">Clinical Framework</p>
+          <h2>Evidence-Based.<br><em>Spiritually Alive.</em></h2>
+          <p style="font-size:1rem; line-height:1.85; opacity:0.8; margin-bottom:1rem;">
+            Our clinical approach is biopsychosocial-spiritual: we hold biological, psychological,
+            relational, and spiritual dimensions together. We do not subordinate science to faith
+            or faith to science — we believe they illuminate each other.
+          </p>
+          <ul class="approach-list">
+            <li>
+              <span class="list-icon">✦</span>
+              <div>
+                <strong>Trauma-Informed Practice</strong>
+                <span>Safety, stabilization, and regulation as clinical foundations before any deeper processing work. We understand trauma's impact on the nervous system and attend to it carefully.</span>
+              </div>
+            </li>
+            <li>
+              <span class="list-icon">✦</span>
+              <div>
+                <strong>Interpersonal Neurobiology</strong>
+                <span>Clinical work informed by current neuroscience — including attachment theory, polyvagal principles, and the relational shaping of neural integration.</span>
+              </div>
+            </li>
+            <li>
+              <span class="list-icon">✦</span>
+              <div>
+                <strong>Faith-Informed, Non-Coercive</strong>
+                <span>We respect the full spectrum of belief. Our faith framework is a resource and invitation, never a prescription — adapted to meet each person's own tradition and understanding.</span>
+              </div>
+            </li>
+            <li>
+              <span class="list-icon">✦</span>
+              <div>
+                <strong>Cultural Competency</strong>
+                <span>Rigorous attention to cultural identity, systemic context, and the particular ways that race, ethnicity, and lived experience shape psychological and spiritual wellbeing.</span>
+              </div>
+            </li>
+            <li>
+              <span class="list-icon">✦</span>
+              <div>
+                <strong>Recovery-Oriented, Faith-Sensitive Care</strong>
+                <span>Mental health recovery is not one-size-fits-all. We integrate evidence-based recovery models with sensitivity to each person's faith, values, and spiritual identity — without imposing any framework.</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+        <img
+          class="approach-img"
+          src="https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=900&q=80"
+          alt="Sunlight streaming through a forest canopy"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- NATURE BREAK -->
+  <div class="nature-break">
+    <div class="container">
+      <p class="section-label">An Invitation</p>
+      <h2 style="margin-bottom:1.5rem;">You are welcome<br><em>exactly as you are.</em></h2>
+      <p>
+        No striving. No pretending. No rushing.<br>
+        Bring your questions, your weight, your longing.
+      </p>
+      <p>
+        Clinical care at its best creates space — not just for symptom reduction, but for the kind
+        of wholeness that only emerges when a person feels genuinely known.
+      </p>
+      <a href="#contact" class="btn" style="margin-top:1rem;">Reach Out Today</a>
+    </div>
+  </div>
+
+  <!-- CONTACT -->
+  <section class="contact" id="contact">
+    <div class="container">
+      <div class="contact-grid">
+        <div>
+          <p class="section-label" style="color: var(--gold);">Connect With Us</p>
+          <h2>Begin Here</h2>
+          <p>
+            Whether you are seeking personal clinical care, professional consultation, or
+            organizational training — we would be glad to hear from you.
+          </p>
+          <p>
+            Services are available virtually throughout the US and Canada.
+            Faith-based counselling is available internationally.
+          </p>
+          <div class="contact-info">
+            <div class="contact-item">
+              <span>✦</span>
+              <span>Virtual sessions available in all US states &amp; Canadian provinces</span>
+            </div>
+            <div class="contact-item">
+              <span>✦</span>
+              <span>Faith-inclusive · Non-judgmental · Culturally responsive</span>
+            </div>
+            <div class="contact-item">
+              <span>✦</span>
+              <span>Individual, couples, group, and organizational services</span>
+            </div>
+            <div class="contact-item">
+              <span>✦</span>
+              <span>Professional consultation &amp; ministry training available</span>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" onsubmit="handleSubmit(event)">
+          <div style="display:grid; grid-template-columns:1fr 1fr; gap:1rem;">
+            <div class="form-group">
+              <label>First Name</label>
+              <input type="text" placeholder="Your name" />
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" placeholder="Your last name" />
+            </div>
+          </div>
+          <div class="form-group">
+            <label>Email</label>
+            <input type="email" placeholder="your@email.com" />
+          </div>
+          <div class="form-group">
+            <label>I am looking for</label>
+            <select>
+              <option value="">— Please select —</option>
+              <option>Personal mental health care</option>
+              <option>Psychiatric consultation (PMHNP)</option>
+              <option>Faith-based counselling</option>
+              <option>Mental health recovery support</option>
+              <option>Professional / organizational consultation</option>
+              <option>Ministry training or webinar</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label>Message (optional)</label>
+            <textarea placeholder="Tell us a little about what brings you here…"></textarea>
+          </div>
+          <button type="submit" class="btn" style="width:100%; text-align:center; cursor:pointer; border:none; font-family:'Inter',sans-serif;">
+            Send My Request
+          </button>
+          <div id="form-success" style="display:none; color: var(--dawn); font-size:0.88rem; text-align:center; margin-top:0.5rem;">
+            ✦ Thank you — we'll be in touch soon.
+          </div>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <p>© 2025 SoulBridge Center · Faith-Based Mental Health Services &amp; Consultation · All Rights Reserved</p>
+  </footer>
+
+  <script>
+    // Hamburger menu
+    const toggle = document.getElementById('navToggle');
+    const navLinks = document.getElementById('navLinks');
+    toggle.addEventListener('click', () => {
+      toggle.classList.toggle('open');
+      navLinks.classList.toggle('open');
+      document.body.style.overflow = navLinks.classList.contains('open') ? 'hidden' : '';
+    });
+
+    // Close nav on link click
+    navLinks.querySelectorAll('a').forEach(a => {
+      a.addEventListener('click', () => {
+        toggle.classList.remove('open');
+        navLinks.classList.remove('open');
+        document.body.style.overflow = '';
+      });
+    });
+
+    // Smooth scroll
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+
+    // Form
+    function handleSubmit(e) {
+      e.preventDefault();
+      document.getElementById('form-success').style.display = 'block';
+      e.target.querySelectorAll('input, textarea, select, button').forEach(el => el.disabled = true);
+    }
+  </script>
+
+</body>
+</html>
